@@ -1,0 +1,65 @@
+<ng-container *ngIf="isLoad; then thenTemplate; else elseTemplate"></ng-container>
+<ng-template #thenTemplate>
+  <div class="container">
+
+    <h2>Registro de Regalo</h2>
+    <!-- name -->
+    <form #newUserForm="ngForm">
+
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="name">Nombre</label>
+          <input type="text"
+                 class="form-control"
+                 [(ngModel)]="nameInput"
+                 #name="ngModel"
+                 id="name"
+                 name="name"
+                 [ngClass]="{'is-valid': name.value , 
+               'is-invalid': (name.dirty || name.touched) && !name.value }"
+                 required>
+          <div *ngIf="(name.dirty || name.touched) && !name.value"
+               class="invalid-feedback">
+            Anota nombre del regalo
+          </div>
+        </div>
+
+      </div>
+
+      <!-- descr -->
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="name">Descripción</label>
+          <textarea type="text"
+                    class="form-control"
+                    [(ngModel)]="descriptionInput"
+                    #description="ngModel"
+                    id="description"
+                    name="description"
+                    [ngClass]="{'is-valid': description.value , 
+                     'is-invalid': (description.dirty || description.touched) && !description.value }"
+                    required></textarea>
+          <div *ngIf="(description.dirty || description.touched) && !description.value"
+               class="invalid-feedback">
+            Anota descripción del regalo
+          </div>
+        </div>
+
+      </div>
+
+      <button *ngIf="isNew"
+              [disabled]="newUserForm.invalid"
+              (click)="newGift()"
+              class="btn btn-primary">Agregar</button>
+      <button *ngIf="!isNew"
+              (click)="newGift()"
+              class="btn btn-secondary">Editar</button>
+    </form>
+  </div>
+</ng-template>
+<ng-template #elseTemplate>
+  <div class="container w-25">
+    <app-general-spinner></app-general-spinner>
+  </div>
+
+</ng-template>

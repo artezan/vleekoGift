@@ -1,0 +1,103 @@
+<ng-container *ngIf="isLoad; then thenTemplate; else elseTemplate"></ng-container>
+<ng-template #thenTemplate>
+
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <img *ngIf="user && user.imgURL"
+         class="rounded-circle"
+         [src]="user.imgURL"
+         alt="Generic placeholder image"
+         width="140"
+         height="140">
+    <h3 class="display-4">{{user.name}} {{user.lastName}}</h3>
+    <h5><span class="badge badge-secondary">{{user.area}}</span></h5>
+  </div>
+
+  <div class="container">
+    <div class="card-deck mb-3 text-center">
+      <!-- regalos -->
+      <div class="card mb-4 box-shadow">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">Regalos</h4>
+        </div>
+        <div class="card-body  d-flex flex-column">
+          <h1 class="card-title pricing-card-title">{{user.gifts.length}}
+            <small class="text-muted">/3 registrados</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Aqui puedes registrar tu lista de deseos</li>
+            <li>Registra los 3 principales</li>
+          </ul>
+          <button type="button"
+                  [routerLink]="['/gift']"
+                  class="mt-auto btn btn-lg btn-block btn-outline-primary">Entrar</button>
+        </div>
+      </div>
+      <!-- Persona asignada  -->
+      <div *ngIf="user.friendId && user.friendId !== '' && friend"
+           class="card mb-4 box-shadow">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">Amigo</h4>
+        </div>
+        <div class="card-body  d-flex flex-column">
+          <h3 class="card-title pricing-card-title">
+            {{friend.name}} {{friend.lastName}}
+            <small class="text-muted"></small></h3>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Felicidades tienes un amigo asignado</li>
+            <li>Aquí puedes ver los deseos de tu amigo</li>
+          </ul>
+          <button type="button"
+                  (click)="goToFrind()"
+                  class="mt-auto btn btn-lg btn-outline-primary">Ver
+            regalos</button>
+        </div>
+      </div>
+      <!-- Persona asignada -->
+      <div *ngIf="!friend || user.friendId === ''"
+           class="card mb-4 box-shadow">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">Amigo</h4>
+        </div>
+        <div class="card-body  d-flex flex-column">
+          <h3 class="card-title pricing-card-title">Sin
+            Asignar
+          </h3>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Aquí aparecerá tu amigo asignado</li>
+            <li>Espera el día del sorteo</li>
+          </ul>
+          <button type="button"
+                  disabled
+                  class="mt-auto btn btn-lg btn-outline-primary">Ver
+            Regalos</button>
+        </div>
+      </div>
+      <!-- Juego -->
+      <div *ngIf="user.userName === 'accp81' || user.userName === 'rpea61'"
+           class="card mb-4 box-shadow">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">Sorteo</h4>
+        </div>
+        <div class="card-body  d-flex flex-column">
+          <h3 class="card-title pricing-card-title">Asignar
+            Amigos
+            <small class="text-muted"></small></h3>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Aquí puedes crear los amigos secretos</li>
+            <li>Solo tu puedes ver esto</li>
+          </ul>
+          <button type="button"
+                  [routerLink]="['/user-list']"
+                  class="mt-auto btn btn-lg btn-block btn-outline-primary">Sortear</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</ng-template>
+<ng-template #elseTemplate>
+  <div class="container w-25">
+    <app-general-spinner></app-general-spinner>
+  </div>
+
+</ng-template>

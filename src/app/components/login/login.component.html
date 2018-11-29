@@ -1,0 +1,34 @@
+<div class="form-signin">
+  <img class="mb-4"
+       src="https://firebasestorage.googleapis.com/v0/b/vleeko-5fdf6.appspot.com/o/vleeko%20navidad.png?alt=media&token=4dee99ae-cf06-4fa5-be03-b14b20e1bf20"
+       alt=""
+       width="200px"
+       style="margin-left: 15%;">
+  <h1 class="h3 mb-3 font-weight-normal">Ingresa ID</h1>
+  <div *ngIf="alert"
+       class="alert alert-danger"
+       role="alert">
+    <strong>ID no encontrado</strong>
+  </div>
+  <label for="inputEmail"
+         class="sr-only">ID</label>
+  <input type="text"
+         class="form-control"
+         placeholder="ID"
+         required
+         autofocus
+         (keydown.enter)="login()"
+         [(ngModel)]="id">
+
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox"
+             [(ngModel)]="isRemember"
+             value="remember-me"> Recordar ID
+    </label>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block"
+          [disabled]="!id"
+          (click)="login()">Entrar</button>
+  <p class="mt-5 mb-3 text-muted">Vleeko 2018-2019</p>
+</div>
