@@ -10,4 +10,5 @@ export interface UserModel {
   userName?: string;
   id?: string;
   imgURL?: string;
+  friend?: UserModel;
 }

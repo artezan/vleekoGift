@@ -3,12 +3,13 @@
   <div class="container">
 
     <h2>Registro de Regalo</h2>
+    <p></p>
     <!-- name -->
     <form #newUserForm="ngForm">
 
       <div class="form-row">
         <div class="col-md-4 mb-3">
-          <label for="name">Nombre</label>
+          <label for="name">Nombre del Regalo</label>
           <input type="text"
                  class="form-control"
                  [(ngModel)]="nameInput"
@@ -29,7 +30,7 @@
       <!-- descr -->
       <div class="form-row">
         <div class="col-md-4 mb-3">
-          <label for="name">Descripción</label>
+          <label for="name">Descripción del Regalo</label>
           <textarea type="text"
                     class="form-control"
                     [(ngModel)]="descriptionInput"

@@ -1,0 +1,54 @@
+.pricing-header {
+  max-width: 700px;
+}
+
+.card-deck .card {
+  min-width: 220px;
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+.chip {
+  display: inline-flex;
+  padding: 0rem 1.563rem;
+  height: 3.125rem;
+  /* line-height: 3.125rem; */
+  border-radius: 1.563rem;
+  margin: 0.625rem;
+  font-size: 1rem;
+  font-weight: 300;
+  text-transform: capitalize;
+  box-shadow: 0.2rem 0.25rem 0.1875rem 0 rgba(0, 0, 0, 0.14);
+  background-color: white
+}
+
+.chip img {
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  margin: 0 0.625rem 0 -1.563rem;
+}
+
+.chip-children {
+  font-weight: bold;
+  align-self: center;
+}
+
+.chip-i {
+  margin-right: 2%;
+  margin-left: 2%;
+}

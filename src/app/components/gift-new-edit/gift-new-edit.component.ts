@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SessionService } from 'src/app/services/session.service';
 import { UserService } from 'src/app/services/user.service';
 import { UserModel } from 'src/models/user.model';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-gift-new-edit',
   templateUrl: './gift-new-edit.component.html',
   styleUrls: ['./gift-new-edit.component.scss'],
 })
-export class GiftNewEditComponent implements OnInit {
+export class GiftNewEditComponent implements OnInit, OnDestroy {
   numArr: any;
   isNew: boolean;
   user: UserModel;
   isLoad: boolean;
   nameInput: string;
   descriptionInput: string;
+  sub: Subscription;
   constructor(
     private router: Router,
     public route: ActivatedRoute,
@@ -38,7 +40,7 @@ export class GiftNewEditComponent implements OnInit {
     this.getUser();
   }
   getUser() {
-    this.userService
+    this.sub = this.userService
       .getUserById(this.sessionService.userSession$.value.userName)
       .subscribe(u => {
         if (u.length > 0) {
@@ -59,5 +61,8 @@ export class GiftNewEditComponent implements OnInit {
     this.userService.editUser(this.user).then(() => {
       this.router.navigate(['gift']);
     });
+  }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

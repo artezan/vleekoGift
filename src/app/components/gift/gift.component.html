@@ -19,106 +19,49 @@
       }}</h2>
     <div class="card-deck mb-3 text-center">
       <!-- regalos -->
-      <!-- R1 -->
-      <div class="card mb-4 box-shadow"
-           *ngIf="!(onlyShow && !user.gifts[0])  "
-           [ngClass]="{'bg-secondary text-white': !user.gifts[0], ' text-black': user.gifts[0]}">
+
+      <!-- demo -->
+
+      <div *ngFor="let num of numbers"
+           [hidden]="(onlyShow && !user.gifts[num])"
+           class="card mb-4 box-shadow"
+           [ngClass]="{'bg-secondary text-white': !user.gifts[num],
+            ' text-black': user.gifts[num]}">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Deseo 1</h4>
+          <h4 class="my-0 font-weight-normal">Deseo {{num +
+            1}}</h4>
         </div>
 
-        <div class="card-body  d-flex flex-column center-items">
+        <div class="card-body   center-items">
           <img src="https://firebasestorage.googleapis.com/v0/b/vleeko-5fdf6.appspot.com/o/gift%20(1).png?alt=media&token=341e3ad2-3bdf-4fe0-acd5-5980be40c56b"
                width="140"
                height="140">
-          <h3 class="card-title pricing-card-title">{{!user.gifts[0]
-            ? 'Registra un regalo' : user.gifts[0].name }}
+          <h3 class="card-title pricing-card-title">{{!user.gifts[num]
+            ? 'Registra un regalo' : user.gifts[num].name
+            }}
           </h3>
           <div class="list-unstyled mt-3 mb-4">
-            <p>{{!user.gifts[0]
+            <p>{{!user.gifts[num]
               ? 'Aquí puedes anotar una opción de regalo' :
-              user.gifts[0].description }}</p>
+              user.gifts[num].description }}</p>
           </div>
-          <div>
+          <div style="width: 100%">
             <button type="button"
-                    *ngIf="!onlyShow && !user.gifts[0]"
-                    (click)="goToGiftNew(0)"
+                    *ngIf="!onlyShow && !user.gifts[num]"
+                    (click)="goToGiftNew(num)"
                     class="mt-auto btn btn-primary">Agregar</button>
             <button type="button"
-                    *ngIf="!onlyShow && user.gifts[0]"
-                    (click)="goToGiftEdit(0)"
-                    class="mt-auto btn btn-secondary">Editar</button>
+                    *ngIf="!onlyShow && user.gifts[num]"
+                    (click)="goToGiftEdit(num)"
+                    class="mt-auto btn btn-secondary mr-1">Editar</button>
+            <button type="button"
+                    *ngIf="!onlyShow && user.gifts[num]"
+                    (click)="deleteGift(num)"
+                    class="mt-auto btn btn-outline-danger">Borrar</button>
           </div>
 
         </div>
       </div>
-      <!-- R2 -->
-      <div class="card mb-4 box-shadow"
-           *ngIf="!(onlyShow && !user.gifts[1])  "
-           [ngClass]="{'bg-secondary text-white': !user.gifts[1], ' text-black': user.gifts[1]}">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Deseo 1</h4>
-        </div>
-
-        <div class="card-body  d-flex flex-column center-items">
-          <img src="https://firebasestorage.googleapis.com/v0/b/vleeko-5fdf6.appspot.com/o/gift%20(1).png?alt=media&token=341e3ad2-3bdf-4fe0-acd5-5980be40c56b"
-               width="140"
-               height="140">
-          <h3 class="card-title pricing-card-title">{{!user.gifts[1]
-            ? 'Registra un regalo' : user.gifts[1].name }}
-          </h3>
-          <div class="list-unstyled mt-3 mb-4">
-            <p>{{!user.gifts[1]
-              ? 'Aquí puedes anotar una opción de regalo' :
-              user.gifts[1].description }}</p>
-          </div>
-          <div>
-            <button type="button"
-                    *ngIf="!onlyShow && !user.gifts[1]"
-                    (click)="goToGiftNew(1)"
-                    class="mt-auto btn btn-primary">Agregar</button>
-            <button type="button"
-                    *ngIf="!onlyShow && user.gifts[1]"
-                    (click)="goToGiftEdit(1)"
-                    class="mt-auto btn btn-secondary">Editar</button>
-          </div>
-
-        </div>
-      </div>
-      <!-- R3 -->
-      <div class="card mb-4 box-shadow"
-           *ngIf="!(onlyShow && !user.gifts[2])  "
-           [ngClass]="{'bg-secondary text-white': !user.gifts[2], ' text-black': user.gifts[2]}">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Deseo 1</h4>
-        </div>
-
-        <div class="card-body  d-flex flex-column center-items">
-          <img src="https://firebasestorage.googleapis.com/v0/b/vleeko-5fdf6.appspot.com/o/gift%20(1).png?alt=media&token=341e3ad2-3bdf-4fe0-acd5-5980be40c56b"
-               width="140"
-               height="140">
-          <h3 class="card-title pricing-card-title">{{!user.gifts[2]
-            ? 'Registra un regalo' : user.gifts[2].name }}
-          </h3>
-          <div class="list-unstyled mt-3 mb-4">
-            <p>{{!user.gifts[2]
-              ? 'Aquí puedes anotar una opción de regalo' :
-              user.gifts[2].description }}</p>
-          </div>
-          <div>
-            <button type="button"
-                    *ngIf="!onlyShow && !user.gifts[2]"
-                    (click)="goToGiftNew(2)"
-                    class="mt-auto btn btn-primary">Agregar</button>
-            <button type="button"
-                    *ngIf="!onlyShow && user.gifts[2]"
-                    (click)="goToGiftEdit(2)"
-                    class="mt-auto btn btn-secondary">Editar</button>
-          </div>
-
-        </div>
-      </div>
-
 
     </div>
   </div>

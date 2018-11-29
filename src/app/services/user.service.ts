@@ -24,6 +24,21 @@ export class UserService {
         }),
       );
   }
+  getItemsNoRealTime(): Observable<UserModel[]> {
+    return this.afs
+      .collection('users', ref => {
+        return ref.orderBy('name');
+      })
+      .snapshotChanges()
+      .pipe(
+        map(actions => {
+          return <UserModel[]>actions.map(item => ({
+            id: item.payload.doc.id,
+            ...item.payload.doc.data(),
+          }));
+        }),
+      );
+  }
   addItem(name, number) {
     this.afs.collection('users').add({ name: name, numero: number });
   }

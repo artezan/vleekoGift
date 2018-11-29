@@ -52,29 +52,45 @@
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
+
 .chip {
-
-  //   padding: 0 1%;
-  height: 50px;
-  font-size: 16px;
-  /* line-height: 50px; */
-  border-radius: 25px;
-  background-color: #f1f1f1;
-  display: flex;
-  justify-content: center;
+  display: inline-flex;
+  padding: 0rem 1.563rem;
+  height: 3.125rem;
+  /* line-height: 3.125rem; */
+  border-radius: 1.563rem;
+  margin: 0.625rem;
+  font-size: 1rem;
+  font-weight: 300;
+  text-transform: capitalize;
+  box-shadow: 0.2rem 0.25rem 0.1875rem 0 rgba(0, 0, 0, 0.14);
+  background-color: whitesmoke
 }
 
-.chip-img {
-  float: left;
-  margin: 0 10px 0 -25px;
-  height: 50px;
-  width: 50px;
+
+.chip img {
+  width: 3.125rem;
+  height: 3.125rem;
   border-radius: 50%;
+  margin: 0 0.625rem 0 -1.563rem;
 }
+
+.chip-children {
+  font-weight: bold;
+  align-self: center;
+}
+
+.chip-i {
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+
 
 .flex-user {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .flex-button {

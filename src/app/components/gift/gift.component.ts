@@ -13,6 +13,7 @@ export class GiftComponent implements OnInit {
   onlyShow: boolean;
   user: UserModel;
   isLoad: boolean;
+  numbers = [0, 1, 2];
   constructor(
     private router: Router,
     public route: ActivatedRoute,
@@ -67,5 +68,9 @@ export class GiftComponent implements OnInit {
       queryParams: { num: num, acction: 'edit' },
     };
     this.router.navigate(['gift-new-edit'], data);
+  }
+  deleteGift(num: number) {
+    this.user.gifts[num] = null;
+    this.userService.editUser(this.user);
   }
 }

@@ -1,3 +1,74 @@
-<p>
-  user-game works!
-</p>
+<ng-container *ngIf="isLoad; then thenTemplate; else elseTemplate"></ng-container>
+<ng-template #thenTemplate>
+
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center animated zoomInUp">
+    <img *ngIf="user && user.imgURL"
+         class="rounded-circle"
+         [src]="user.imgURL"
+         alt="Generic placeholder image"
+         width="140"
+         height="140">
+    <h3 class="display-4">{{user.name}} {{user.lastName}}</h3>
+    <h5><span class="badge badge-secondary">{{user.area}}</span></h5>
+    <div class="card ">
+      <div class="card-body">
+        <p *ngIf="!finish"
+           class="card-text">Hola {{user.name}} se buscará
+          tu compañero de intercambio, se harán 3 intentos,
+          el último será el seleccionado</p>
+        <p *ngIf="finish"
+           class="card-text"> 🎉 Felicidades tu compañero
+          de
+          intercambio es {{userReciver.name}}
+          {{userReciver.lastName}} 🎉</p>
+      </div>
+    </div>
+    <button [disabled]="finish === false"
+            *ngIf="!finish"
+            type="button"
+            class="btn btn-primary btn-lg mt-3"
+            (click)="start()">Empezar
+      <i class="fas fa-play-circle"></i>
+    </button>
+    <button type="button"
+            *ngIf="finish"
+            class="btn btn-outline-success btn-lg mt-3"
+            (click)="goToList()">Aceptar
+    </button>
+    <div class="mt-3">
+      <span *ngIf="isStart">
+        <h5>Buscando amigo suerte 🙏🏻</h5>
+      </span>
+      <div *ngFor="let item of arr">
+        <div *ngIf="isStart === false"
+             class="animated"
+             [ngClass]="{'animated bounceInLeft': acction === 'inn'}">
+          <div class="chip"
+               [ngClass]="{'animated  bounceOutRight ': acction === 'out'}">
+            <img class=""
+                 *ngIf="item.imgURL"
+                 [src]="item.imgURL">
+            <div class="chip-children">
+              {{item.name}}
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <i *ngIf="finish"
+         class="fas fa-check-circle fa-3x animated zoomIn delay-1s "
+         style="color:#28a745"></i>
+      <div *ngIf="finish === false"
+           style="margin-left: 30% !important;">
+        <app-general-spinner></app-general-spinner>
+      </div>
+
+    </div>
+  </div>
+</ng-template>
+<ng-template #elseTemplate>
+  <div class="container w-25">
+    <app-general-spinner></app-general-spinner>
+  </div>
+
+</ng-template>

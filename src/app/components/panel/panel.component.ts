@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SessionService } from 'src/app/services/session.service';
 import { UserModel } from 'src/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { NavigationExtras, Router } from '@angular/router';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-panel',
   templateUrl: './panel.component.html',
   styleUrls: ['./panel.component.scss'],
 })
-export class PanelComponent implements OnInit {
+export class PanelComponent implements OnInit, OnDestroy {
   user: UserModel;
   isLoad: boolean;
   friend: UserModel;
-
+  sub: Subscription;
   constructor(
     private sessionService: SessionService,
     private userService: UserService,
@@ -24,7 +25,7 @@ export class PanelComponent implements OnInit {
     this.getUser();
   }
   getUser() {
-    this.userService
+    this.sub = this.userService
       .getUserById(this.sessionService.userSession$.value.userName)
       .subscribe(u => {
         if (u.length > 0) {
@@ -46,5 +47,8 @@ export class PanelComponent implements OnInit {
       queryParams: { id: this.friend.id },
     };
     this.router.navigate(['gift'], data);
+  }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

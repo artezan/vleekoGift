@@ -1,6 +1,12 @@
 <ng-container *ngIf="isLoad; then thenTemplate; else elseTemplate"></ng-container>
 <ng-template #thenTemplate>
   <div class="container">
+    <div style="text-align: right">
+      <button type="button"
+              (click)="reset()"
+              class="btn btn-outline-danger">Resetear</button>
+    </div>
+
     <div class="my-3 p-3 bg-white rounded box-shadow">
       <h6 class="border-bottom border-gray pb-2 mb-0">Usuarios</h6>
       <div class="media text-muted pt-3"
@@ -12,34 +18,33 @@
           <!-- itmes -->
           <div class=" w-100 flex-user ">
             <div class="chip">
-              <img class="chip-img"
+              <img class=""
                    *ngIf="user.imgURL"
-                   [src]="user.imgURL"
-                   width="96"
-                   height="96">
-              <div>
-                {{user.name}} {{user.lastName}}
+                   [src]="user.imgURL">
+              <div class="chip-children">
+                {{user.name}}
               </div>
 
+
             </div>
-            <i class="fas fa-angle-double-right fa-3x"
-               *ngIf="user.friendId && user.friendId !== '' "></i>
+            <i class="fas fa-angle-double-right fa-3x chip-i"
+               *ngIf="user.friendId && user.friendId !== '' && user.friendId !== ' ' "></i>
             <!-- asignado -->
             <div *ngIf="user.friend"
                  class="chip">
-              <img class="chip-img"
+              <img class=""
                    *ngIf="user.friend.imgURL"
-                   [src]="user.friend.imgURL"
-                   width="96"
-                   height="96">
-              <div>
+                   [src]="user.friend.imgURL">
+              <div class="chip-children">
                 {{user.friend.name}}
-                {{user.friend.lastName}}
               </div>
+
 
             </div>
             <div class="flex-button">
               <button type="button"
+                      *ngIf="!(user.friendId && user.friendId !== '' && user.friendId !== ' ' )"
+                      (click)="goToGame(user.id)"
                       class="btn btn-primary btn-sm">Asignar</button>
             </div>
           </div>
