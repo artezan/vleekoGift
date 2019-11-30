@@ -48,6 +48,19 @@ export class PanelComponent implements OnInit, OnDestroy {
     };
     this.router.navigate(['gift'], data);
   }
+  public getNumGift(): number {
+    if (this.user.gifts && this.user.gifts.length === 0) {
+      return 0;
+    } else if (this.user.gifts) {
+      let num = 0;
+      this.user.gifts.forEach(g => {
+        if (g !== null && g !== undefined) {
+          num = num + 1;
+        }
+      });
+      return num;
+    }
+  }
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

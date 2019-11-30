@@ -1,7 +1,7 @@
 <ng-container *ngIf="isLoad; then thenTemplate; else elseTemplate"></ng-container>
 <ng-template #thenTemplate>
 
-  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center"
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center animated fadeIn"
        *ngIf="onlyShow">
     <img *ngIf="user && user.imgURL"
          class="rounded-circle"
@@ -24,7 +24,7 @@
 
       <div *ngFor="let num of numbers"
            [hidden]="(onlyShow && !user.gifts[num])"
-           class="card mb-4 box-shadow"
+           class="card mb-4 box-shadow animated fadeIn"
            [ngClass]="{'bg-secondary text-white': !user.gifts[num],
             ' text-black': user.gifts[num]}">
         <div class="card-header">
