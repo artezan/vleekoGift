@@ -59,11 +59,17 @@
            [routerLink]="['/gift']">Regalos</a>
       </li>
       <li class="nav-item"
-          *ngIf="user.userName === 'accp81' || user.userName === 'rpea61'">
+          *ngIf="user.userName === 'accp81' || user.userName === 'rpea61' || user.userName === 'tjlp70'">
         <a class="nav-link"
            [ngClass]="{'active':link === '/user-list'}"
-           [routerLink]="['/user-list']">Usuarios</a>
+           [routerLink]="['/user-list']">Sorteo</a>
       </li>
+      <li class="nav-item"
+      *ngIf="user.userName === 'accp81' || user.userName === 'rpea61' || user.userName === 'tjlp70'">
+    <a class="nav-link"
+       [ngClass]="{'active':link === '/user-list'}"
+       [routerLink]="['/users-all']">Usuarios</a>
+  </li>
     </ul>
     <button *ngIf="islogin"
             class="btn btn-outline-success my-2 my-sm-0"

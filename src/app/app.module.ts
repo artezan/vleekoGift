@@ -18,6 +18,8 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 import { UserGameComponent } from './components/user/user-game/user-game.component';
 import { SessionService } from './services/session.service';
 import { GeneralSpinnerComponent } from './components/shared/general-spinner/general-spinner.component';
+import { UserAddEditComponent } from './components/user/user-add-edit/user-add-edit.component';
+import { UsersAllComponent } from './components/user/users-all/users-all.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA6SpDnAoCdReK4-sW71Ra-Ju6vLBxcETg',
@@ -38,6 +40,8 @@ const firebaseConfig = {
     UserListComponent,
     UserGameComponent,
     GeneralSpinnerComponent,
+    UserAddEditComponent,
+    UsersAllComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,58 @@
+<ng-container *ngIf="isLoad; then thenTemplate; else elseTemplate"></ng-container>
+<ng-template #thenTemplate>
+  <div class="container">
+    <div style="text-align: right">
+      <button type="button"
+              [routerLink]="['/user-add-edit']"
+              class="btn btn-outline-primary">AGREGAR</button>
+    </div>
+
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+      <h6 class="border-bottom border-gray pb-2 mb-0">Usuarios</h6>
+      <div class="media text-muted pt-3"
+           *ngFor="let user of users">
+        <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1"
+             alt=""
+             class="mr-2 rounded">
+        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <!-- itmes -->
+          <div class=" w-100 flex-user ">
+            <div class="chip">
+              <img class=""
+                   *ngIf="user.imgURL"
+                   [src]="user.imgURL">
+              <div class="chip-children">
+                {{user.name}}
+              </div>
+
+
+            </div>
+            <h4> <span class="badge badge-secondary">{{user.userName}}</span></h4>
+
+
+          </div>
+          <div class="flex-button">
+
+            <button type="button"
+                    (click)="editUser(user.id)"
+                    class="btn btn-primary btn-sm">Editar</button>
+            <button style="margin-left: 2%;"
+                    *ngIf="!(  user.userName === 'rpea61' || user.userName === 'tjlp70')"
+                    type="button"
+                    (click)="deleteUser(user.id)"
+                    class="btn btn-danger btn-sm">Borrar</button>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</ng-template>
+<ng-template #elseTemplate>
+  <div class="container w-25">
+    <app-general-spinner></app-general-spinner>
+  </div>
+</ng-template>

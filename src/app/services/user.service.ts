@@ -3,11 +3,14 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserModel } from 'src/models/user.model';
+import * as firebase from 'firebase/app';
+import 'firebase/storage';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UserService {
+  private uploadTask: firebase.storage.UploadTask;
   constructor(private afs: AngularFirestore) {}
   getItems(): Observable<UserModel[]> {
     return this.afs
@@ -19,9 +22,9 @@ export class UserService {
         map(actions => {
           return <UserModel[]>actions.map(item => ({
             id: item.payload.doc.id,
-            ...item.payload.doc.data(),
+            ...item.payload.doc.data()
           }));
-        }),
+        })
       );
   }
   getItemsNoRealTime(): Observable<UserModel[]> {
@@ -34,9 +37,9 @@ export class UserService {
         map(actions => {
           return <UserModel[]>actions.map(item => ({
             id: item.payload.doc.id,
-            ...item.payload.doc.data(),
+            ...item.payload.doc.data()
           }));
-        }),
+        })
       );
   }
   addItem(name, number) {
@@ -48,9 +51,9 @@ export class UserService {
   editUser(user: UserModel): Promise<void> {
     return this.afs.doc('users/' + user.id).update(user);
   }
-  deleteItem(itemId) {
+  deleteUser(itemId) {
     const id = String(itemId);
-    this.afs.doc('users/' + id).delete();
+   return this.afs.doc('users/' + id).delete();
   }
   getUserById(userName: string): Observable<UserModel[]> {
     return this.afs
@@ -62,9 +65,9 @@ export class UserService {
         map(actions => {
           return <UserModel[]>actions.map(item => ({
             id: item.payload.doc.id,
-            ...item.payload.doc.data(),
+            ...item.payload.doc.data()
           }));
-        }),
+        })
       );
   }
   getUserByIdFire(id: string): Observable<UserModel> {
@@ -78,10 +81,36 @@ export class UserService {
           return <UserModel>actions
             .map(item => ({
               id: item.payload.doc.id,
-              ...item.payload.doc.data(),
+              ...item.payload.doc.data()
             }))
-            .find(r => r.id === id);
-        }),
+            .find((r: any) => r.id === id);
+        })
       );
   }
+  addUser(user: UserModel) {
+    return this.afs.collection('users').add(user);
+  }
+  async upload(upload: File): Promise<string> {
+    const promise = new Promise((resolve, reject) => {
+      try {
+        const storageRef = firebase.storage().ref();
+        this.uploadTask = storageRef.child(`${upload.name}`).put(upload);
+        this.uploadTask.on(
+          firebase.storage.TaskEvent.STATE_CHANGED,
+          snapshot => {
+            // console.log(snapshot);
+          },
+          err => console.log(err),
+          () => {
+            resolve(storageRef.child(upload.name).getDownloadURL());
+          }
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    });
+    const result: string = (await promise) as string;
+    return result;
+  }
+
 }

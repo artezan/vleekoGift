@@ -8,7 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:app": "ng build  --prod --base-href http://intercambio.vleeko.com/"
+    "build:app": "ng build  --prod --base-href http://intercambio.vleeko.com/",
+    "build:firebase": "ng build --prod && npm run fb:deploy",
+    "fb:deploy": "firebase deploy"
   },
   "private": true,
   "dependencies": {

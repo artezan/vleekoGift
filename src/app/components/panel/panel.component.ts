@@ -15,6 +15,8 @@ export class PanelComponent implements OnInit, OnDestroy {
   isLoad: boolean;
   friend: UserModel;
   sub: Subscription;
+  imgToUpload: File;
+  prevImg: string;
   constructor(
     private sessionService: SessionService,
     private userService: UserService,
@@ -60,6 +62,19 @@ export class PanelComponent implements OnInit, OnDestroy {
       });
       return num;
     }
+  }
+  getImg(event) {
+    console.log(event.target.files.item(0))
+    this.imgToUpload = event.target.files.item(0);
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.prevImg = e.target.result as string;
+      console.log(this.prevImg)
+    }
+    reader.readAsDataURL(this.imgToUpload)
+  }
+  upload() {
+    this.userService.upload(this.imgToUpload);
   }
   ngOnDestroy() {
     this.sub.unsubscribe();
