@@ -22,12 +22,12 @@ import { UserAddEditComponent } from './components/user/user-add-edit/user-add-e
 import { UsersAllComponent } from './components/user/users-all/users-all.component';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyA6SpDnAoCdReK4-sW71Ra-Ju6vLBxcETg',
-  authDomain: 'vleeko-5fdf6.firebaseapp.com',
+  apiKey: '',
+  authDomain: '',
   databaseURL: 'https://vleeko-5fdf6.firebaseio.com',
-  projectId: 'vleeko-5fdf6',
-  storageBucket: 'vleeko-5fdf6.appspot.com',
-  messagingSenderId: '481346644756',
+  projectId: '',
+  storageBucket: '',
+  messagingSenderId: '',
 };
 
 @NgModule({

@@ -45,6 +45,7 @@ export class UserAddEditComponent implements OnInit {
     }
   }
   add() {
+    this.user.gifts = [];
     this.userService.upload(this.imgToUpload).then(url => {
       this.user.imgURL = url;
       this.userService.addUser(this.user).then(() => {
@@ -95,6 +96,8 @@ export class UserAddEditComponent implements OnInit {
     }
   }
   deleteImg() {
+    this.imgToUpload = undefined ;
+    this.prevImg = undefined ;
     this.user.imgURL = undefined;
   }
 }

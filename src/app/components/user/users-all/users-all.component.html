@@ -36,6 +36,7 @@
             <button type="button"
                     (click)="editUser(user.id)"
                     class="btn btn-primary btn-sm">Editar</button>
+                    <!-- TODO: Make more general admin users -->
             <button style="margin-left: 2%;"
                     *ngIf="!(  user.userName === 'rpea61' || user.userName === 'tjlp70')"
                     type="button"
